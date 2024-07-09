@@ -36,7 +36,7 @@
         .login-container input {
             width: 100%;
             padding: 10px;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
             border: 1px solid #dddddd;
             border-radius: 5px;
             box-sizing: border-box;
@@ -60,35 +60,58 @@
             text-align: center;
             color: #ff0000;
         }
+
+        .show-password-container {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .show-password-container input {
+            margin-right: 300px;
+        }
+
     </style>
 </head>
 <body>
     <div class="login-container">
         <h2>Login</h2>
         <form id="loginForm">
-            <label for="username">Username:</label>
+            <label for="username">Usuario:</label>
             <input type="text" id="username" name="username" required>
-            <label for="password">Password:</label>
+            <label for="password">Contraseña:</label>
             <input type="password" id="password" name="password" required>
+            <div class="show-password-container">
+                <input type="checkbox" id="showPassword" onclick="togglePassword()">
+            </div>
             <button type="button" onclick="login()">Login</button>
         </form>
         <p id="message"></p>
     </div>
 
     <script>
+        function togglePassword() {
+            var passwordField = document.getElementById("password");
+            if (passwordField.type === "password") {
+                passwordField.type = "text";
+            } else {
+                passwordField.type = "password";
+            }
+        }
+
         function login() {
             var username = document.getElementById("username").value;
             var password = document.getElementById("password").value;
 
-            var validUsername = "ingreyeslara";
-            var validPassword = "Utd_2024";
+            var validUsername = "examen_parcial2";
+            var validPassword = "Voyporel100";
 
             if (username === validUsername && password === validPassword) {
-                document.getElementById("message").textContent = "Login successful!";
+                document.getElementById("message").textContent = "Inicio de Sesión Exitoso!";
                 document.getElementById("message").style.color = "green";
-                // Redirect to another page or perform any other desired action
+                window.location.href = "dashboard.html";
             } else {
-                document.getElementById("message").textContent = "Invalid username or password.";
+                document.getElementById("message").textContent = "Usuario y/o Contraseña Incorrectos.";
                 document.getElementById("message").style.color = "red";
             }
         }
